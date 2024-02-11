@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ozindi_damyt/features/cinema/cinema_page.dart';
-import 'package:ozindi_damyt/features/hobby/hobby_page.dart';
-import 'package:ozindi_damyt/features/library/library_page.dart';
-import 'package:ozindi_damyt/features/marathons/marathon.dart';
-import 'package:ozindi_damyt/features/new_recommendation/new_recommendation_page.dart';
-import 'package:ozindi_damyt/features/podcast/pages/podcast_page.dart';
-import 'package:ozindi_damyt/features/proforintation/proforintation_page.dart';
-import 'package:ozindi_damyt/features/quiz/quiz_page.dart';
-import 'package:ozindi_damyt/features/sport/sport.dart';
-import 'package:ozindi_damyt/features/stoury/stoury_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/cinema/cinema_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/hobby/hobby_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/library/library_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/marathons/marathon.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/new_recommendation/new_recommendation_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/podcast_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/proforintation/proforintation_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/quiz/quiz_page.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/sport/sport.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/stoury/stoury_page.dart';
 
 class MyDrawerList extends StatefulWidget {
   const MyDrawerList({super.key});
