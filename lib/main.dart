@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/library/library_page.dart';
+import 'package:ozindi_damyt/features/bottom_nav_bar/home_page/home_page.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/library/models/book_access.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/library/pages/add_book.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LibraryPage(),
+      home: HomePage(),
     );
   }
 }

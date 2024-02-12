@@ -4,11 +4,11 @@ import 'package:ozindi_damyt/features/hamburger_drawer/hobby/pages/loadingpage.d
 List<Map<String, dynamic>> marathone = [
   {
     "id": 1,
-    "name_mara": "Кітап- алтын қазына",
-    "type_mara": "Кітап оқу марафоны",
+    "name_mara": "451*",
+    "type_mara": "Кітап- алтын қазына",
     "date": "22.01- 1.02",
     "gift": "Меломан дүкендер желісінен кітап",
-    "photo": "assets/images/marathones/mara_img.png",
+    "photo": "assets/images/marathones/451.jpg",
   },
 ];
 
@@ -54,9 +54,14 @@ class MaraphoneListWidgetState extends State<MaraphoneListWidget> {
                   key: ValueKey(marathone[index]["id"]),
                   child: Stack(
                     children: [
-                      Image.asset(marathone[index]["photo"], fit: BoxFit.fill),
+                      Container(
+                        width: 400,
+                        height: 130,
+                        child: Image.asset(marathone[index]["photo"],
+                            fit: BoxFit.cover),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 20),
+                        padding: const EdgeInsets.only(left: 20, top: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -65,18 +70,18 @@ class MaraphoneListWidgetState extends State<MaraphoneListWidget> {
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Colors.white),
+                                  color: Colors.blueGrey),
                             ),
                             Text(
                               marathone[index]["type_mara"],
                               style: const TextStyle(
-                                  fontSize: 17, color: Colors.white),
+                                  fontSize: 17, color: Colors.blueGrey),
                             ),
                             Row(
                               children: [
                                 Icon(
                                   Icons.calendar_month_outlined,
-                                  color: Colors.white,
+                                  color: Colors.blueGrey,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -86,7 +91,7 @@ class MaraphoneListWidgetState extends State<MaraphoneListWidget> {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
-                                      color: Colors.white),
+                                      color: Colors.blueGrey),
                                 ),
                               ],
                             ),
@@ -94,7 +99,7 @@ class MaraphoneListWidgetState extends State<MaraphoneListWidget> {
                               children: [
                                 Icon(
                                   Icons.card_giftcard_rounded,
-                                  color: Colors.white,
+                                  color: Colors.blueGrey,
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -104,14 +109,14 @@ class MaraphoneListWidgetState extends State<MaraphoneListWidget> {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
-                                      color: Colors.white),
+                                      color: Colors.blueGrey),
                                 ),
                                 SizedBox(
                                   width: 40,
                                 ),
                                 Icon(
                                   Icons.telegram,
-                                  color: Colors.white,
+                                  color: Colors.blueGrey,
                                 )
                               ],
                             )
