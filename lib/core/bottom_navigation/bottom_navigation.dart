@@ -14,7 +14,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 2;
 
   final List<Widget> _screens = [
     MarathonePage(),
