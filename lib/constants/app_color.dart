@@ -11,6 +11,8 @@ class AppColor {
   static const Color tapsyrmaColor2 = Color(0xFF1A2A89);
   static const Color tapsyrmaColor3 = Color(0xFFB950EB);
   static const Color tapsyrmaColor4 = Color(0xFFFF7648);
+  static const Color red = Color(0xFFC42F2F);
+  static const Color grey = Color(0xFF595959);
 
 // Add more color constants as needed for your app's design
 }
