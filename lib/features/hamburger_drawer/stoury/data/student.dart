@@ -3,8 +3,6 @@ class Student {
   late String name;
   late String desc;
   late String photoLink;
-  // late String photo;
-  // late String lan;
 
   Student(
     this.id,

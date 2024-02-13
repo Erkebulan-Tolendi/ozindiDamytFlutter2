@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/podcast/data/podcast_data.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/pages_of_widgets/all_podcasts.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/pages_of_widgets/podcast_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'my_podcasts.dart';
@@ -15,19 +17,16 @@ class AllWidgetsPage extends StatefulWidget {
 class _AllWidgetsPageState extends State<AllWidgetsPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Column(
-          children: [
-            const SizedBox(height: 10),
-            _bigCard(),
-            const SizedBox(height: 10),
-            Expanded(
-              child: PodcastListView(podcastTypes: card_descrip),
-            ),
-          ],
-        ),
+    return Scaffold(
+      body: Column(
+        children: [
+          const SizedBox(height: 10),
+          _bigCard(),
+          const SizedBox(height: 10),
+          Expanded(
+            child: PodcastListView(podcastTypes: card_descrip),
+          ),
+        ],
       ),
     );
   }
@@ -100,14 +99,17 @@ class PodcastListView extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => const MyPodcasts()));
                       } else {
+                        print('Assflekrm ${card_descrip.elementAt(index)}');
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return AllPodcast(
-                              item: card_descrip.elementAt(index),
-                            );
-                          }),
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChangeNotifierProvider(
+                                create: (context) => PodcastProvider(),
+                                child: AllPodcast(
+                                  item: card_descrip.elementAt(index),
+                                ),
+                              ),
+                            ));
                       }
                     },
                     child: ListTile(

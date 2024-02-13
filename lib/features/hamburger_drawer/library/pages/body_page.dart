@@ -8,7 +8,6 @@ class BodyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Fetching books directly without Provider
     List<Book> books = BookAccess().books;
 
     return Center(

@@ -148,7 +148,6 @@ class _StouryPageState extends State<StouryPage> {
     _refreshJournals();
   }
 
-  // Delete an item
   void _deleteItem(int id) async {
     await SQLHelper.deleteItem(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -221,9 +220,9 @@ class _StouryPageState extends State<StouryPage> {
                               Container(
                                   width: 50,
                                   height: 30,
-                                  child: Row(
+                                  child: const Row(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         height: 30,
                                         child: Row(
                                           children: [

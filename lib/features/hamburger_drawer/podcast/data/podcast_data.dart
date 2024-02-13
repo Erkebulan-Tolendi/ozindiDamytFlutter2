@@ -18,7 +18,7 @@ List<Map<String, dynamic>> card_descrip = [
     'title': 'Білім подкасттары',
     'podcasts': [
       {
-        'name': 'Театрға барудың 3 себебі',
+        'name': 'egwtegwtge',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/teatr.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -27,7 +27,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'rus',
       },
       {
-        'name': 'Эдисон, шамды ойлап тапқан',
+        'name': 'sgrfwrhwrtetyrj',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/lamp.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -36,8 +36,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'rus',
       },
       {
-        'name':
-            'Ғылым дегеніміз не және ол сіздің болашағыңызбен қалай байланысты',
+        'name': 'ththnet й байланысты',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/nauka.png',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -46,7 +45,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'rus',
       },
       {
-        'name': 'Кескіндеме эволюциясы: Леонардо да Винчидің өнертабыстары',
+        'name': 'thety идің өнертабыстары',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/vinchi.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -55,7 +54,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'kaz',
       },
       {
-        'name': 'Икемді сана кітап',
+        'name': 'apple',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/gibkoe.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -64,7 +63,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'kaz',
       },
       {
-        'name': 'Кітаптар мотивациялық ақпараттар',
+        'name': 'sen',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/books.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',
@@ -73,7 +72,7 @@ List<Map<String, dynamic>> card_descrip = [
         'lang': 'kaz',
       },
       {
-        'name': 'Димаш Құдайбергеннің жаңа әні шықты',
+        'name': 'lang',
         'subtitle': 'OylanIQ',
         'photo': 'assets/images/podcast/dimash.jpeg',
         'logo': 'assets/images/podcast/circle_logo.webp',

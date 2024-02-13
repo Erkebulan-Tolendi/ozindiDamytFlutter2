@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/pages_of_widgets/podcast_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AllPodcast extends StatefulWidget {
@@ -10,121 +12,18 @@ class AllPodcast extends StatefulWidget {
 }
 
 class _AllPodcastState extends State<AllPodcast> {
-  List<Map<String, dynamic>> _foundCard = [];
-
-  @override
-  void initState() {
-    _foundCard = widget.item["podcasts"];
-    super.initState();
-  }
-
-  //search filter
-  void _runFilter(String enteredWord) {
-    List<Map<String, dynamic>> results = [];
-    if (enteredWord.isEmpty) {
-      results = widget.item["podcasts"];
-    } else {
-      results = (widget.item["podcasts"] as List<Map<String, dynamic>>)
-          .where((Map<String, dynamic> user) =>
-              user['name'].toLowerCase().contains(enteredWord.toLowerCase()))
-          .toList();
-    }
-    setState(() {
-      _foundCard = results;
-    });
-  }
-
-  //filter language
-  void sortLan(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
-    if (enteredKeyword.contains("rus")) {
-      results = (widget.item["podcasts"] as List<Map<String, dynamic>>?)
-              ?.where((Map<String, dynamic>? user) =>
-                  (user?["lang"] as String?)
-                      ?.toLowerCase()
-                      .contains(enteredKeyword.toLowerCase()) ??
-                  false)
-              .toList() ??
-          [];
-    } else if (enteredKeyword.contains("kaz")) {
-      results = (widget.item["podcasts"] as List<Map<String, dynamic>>?)
-              ?.where((Map<String, dynamic>? user) =>
-                  (user?["lang"] as String?)
-                      ?.toLowerCase()
-                      .contains(enteredKeyword.toLowerCase()) ??
-                  false)
-              .toList() ??
-          [];
-    } else {
-      results = widget.item["podcasts"] ?? [];
-    }
-    setState(() {
-      _foundCard = results;
-    });
-  }
-
-  Widget ButtonKaz() {
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-            }
-            return null;
-          },
-        ),
-      ),
-      child: const Text('KAZ'),
-      onPressed: () {
-        sortLan("kaz");
-      },
-    );
-  }
-
-  Widget ButtonRus() {
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-            }
-            return null;
-          },
-        ),
-      ),
-      child: const Text('RUS'),
-      onPressed: () {
-        sortLan("rus");
-      },
-    );
-  }
-
-  Widget ButtonAll() {
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
-              return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-            }
-            return null;
-          },
-        ),
-      ),
-      child: const Text('ALL'),
-      onPressed: () {
-        sortLan("all");
-      },
-    );
-  }
+  List<Map<String, dynamic>> foundCard = [];
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> podcasts = widget.item['podcasts'];
+
+    final podProvider = Provider.of<PodcastProvider>(context, listen: false);
+    podProvider.init(podcasts);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Барлығын көру',
           style: TextStyle(fontSize: 20),
         ),
@@ -136,21 +35,21 @@ class _AllPodcastState extends State<AllPodcast> {
                 child: Text("RUS"),
                 value: "RUS",
                 onTap: () {
-                  sortLan("rus");
+                  podProvider.sortLan("rus");
                 },
               ),
               PopupMenuItem(
                 child: Text("KAZ"),
                 value: "KAZ",
                 onTap: () {
-                  sortLan("kaz");
+                  podProvider.sortLan("kaz");
                 },
               ),
               PopupMenuItem(
                 child: Text("ALL"),
                 value: "ALL",
                 onTap: () {
-                  sortLan("all");
+                  podProvider.sortLan("all");
                 },
               ),
             ],
@@ -166,7 +65,7 @@ class _AllPodcastState extends State<AllPodcast> {
                 Container(
                   height: 50,
                   child: TextField(
-                    onChanged: (String value) => _runFilter(value),
+                    onChanged: (String value) => podProvider.runFilter(value),
                     decoration: InputDecoration(
                       hintText: 'Іздеу',
                       labelStyle: TextStyle(
@@ -183,94 +82,105 @@ class _AllPodcastState extends State<AllPodcast> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 12.0,
-                    mainAxisSpacing: 12.0,
-                    mainAxisExtent: 210,
-                  ),
-                  itemCount: _foundCard.length,
-                  itemBuilder: (_, index) {
-                    return GestureDetector(
-                      onTap: () async {
-                        final url = Uri.parse(_foundCard[index]["url"]);
-                        if (!await launchUrl(url)) {
-                          throw Exception('Could not launch $url');
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 2.0,
+                Consumer<PodcastProvider>(
+                  builder: (context, data, child) {
+                    final podList = data.podcasts;
+                    print('Pod List: $podList');
+                    return GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 12.0,
+                        mainAxisSpacing: 12.0,
+                        mainAxisExtent: 210,
+                      ),
+                      itemCount: podList.length,
+                      itemBuilder: (_, index) {
+                        final podcast = podList[index];
+                        return GestureDetector(
+                          onTap: () async {
+                            final url = Uri.parse(podcast["url"]);
+                            if (!await launchUrl(url)) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16.0),
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 2.0,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(16.0),
-                                topRight: Radius.circular(16.0),
-                              ),
-                              child: Image.asset(
-                                _foundCard[index]['photo'],
-                                height: 120,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    _foundCard[index]['name'],
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                            child: Column(
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(16.0),
+                                    topRight: Radius.circular(16.0),
                                   ),
-                                  const SizedBox(height: 8.0),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  child: Image.asset(
+                                    podcast['photo'],
+                                    height: 120,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(5.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      ImageIcon(
-                                        AssetImage(_foundCard[index]['logo']),
-                                        size: 20,
-                                        color: Colors.amber,
-                                      ),
-                                      const SizedBox(width: 10),
                                       Text(
-                                        _foundCard[index]['subtitle'],
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey.shade800,
-                                          decoration: TextDecoration.none,
-                                        ),
+                                        podcast['name'],
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        _foundCard[index]['lang'],
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            decoration: TextDecoration.none),
+                                      const SizedBox(height: 8.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          ImageIcon(
+                                            AssetImage(podcast['logo']),
+                                            size: 20,
+                                            color: Colors.amber,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(
+                                            podcast['subtitle'],
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey.shade800,
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(
+                                            podcast['lang'],
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                decoration:
+                                                    TextDecoration.none),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

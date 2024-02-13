@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/core/bottom_navigation/bottom_navigation.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/library/models/book_access.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/library/pages/add_book.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => BookAccess(),
-      child: MyApp(),
-    ),
-  );
+  runApp(const MyApp()
+      // ChangeNotifierProvider(
+      //   create: (context) => BookAccess(),
+      //   child: MyApp(),
+      // ),
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/add_book': (context) => AddBook(),
+        '/Podacst': (context) => AddBook(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
