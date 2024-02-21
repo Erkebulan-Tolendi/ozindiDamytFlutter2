@@ -99,7 +99,6 @@ class PodcastListView extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => const MyPodcasts()));
                       } else {
-                        print('Assflekrm ${card_descrip.elementAt(index)}');
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -109,7 +108,7 @@ class PodcastListView extends StatelessWidget {
                                   item: card_descrip.elementAt(index),
                                 ),
                               ),
-                            ));
+                            ),);
                       }
                     },
                     child: ListTile(
