@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/constants/app_color.dart';
 import 'package:ozindi_damyt/features/bottom_nav_bar/home_page/home_page.dart';
-import 'package:ozindi_damyt/features/bottom_nav_bar/marathone_page/marathone_page.dart';
 import 'package:ozindi_damyt/features/bottom_nav_bar/my_book_page/my_book_page.dart';
 import 'package:ozindi_damyt/features/bottom_nav_bar/quiz_page/quiz_page.dart';
 import 'package:ozindi_damyt/features/bottom_nav_bar/sport_page/sport_page.dart';
+
+import '../../features/bottom_nav_bar/calendar_page/calendar.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

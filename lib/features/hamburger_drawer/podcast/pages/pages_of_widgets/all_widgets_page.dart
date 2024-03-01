@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/podcast/data/podcast_data.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/pages_of_widgets/all_podcasts.dart';
 import 'package:ozindi_damyt/features/hamburger_drawer/podcast/pages/pages_of_widgets/podcast_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'all_podcasts.dart';
 import 'my_podcasts.dart';
 
 class AllWidgetsPage extends StatefulWidget {
@@ -100,15 +100,16 @@ class PodcastListView extends StatelessWidget {
                                 builder: (context) => const MyPodcasts()));
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ChangeNotifierProvider(
-                                create: (context) => PodcastProvider(),
-                                child: AllPodcast(
-                                  item: card_descrip.elementAt(index),
-                                ),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (context) => PodcastProvider(),
+                              child: AllPodcast(
+                                item: card_descrip.elementAt(index),
                               ),
-                            ),);
+                            ),
+                          ),
+                        );
                       }
                     },
                     child: ListTile(

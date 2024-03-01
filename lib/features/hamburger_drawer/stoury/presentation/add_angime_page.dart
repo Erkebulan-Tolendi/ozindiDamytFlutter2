@@ -14,8 +14,6 @@ class _AddAngimePageState extends State<AddAngimePage> {
   File? file;
   ImagePicker image = ImagePicker();
 
-  //late Future<List<Angime>> _angimeList;
-
   @override
   void initState() {
     super.initState();
@@ -130,7 +128,7 @@ class _AddAngimePageState extends State<AddAngimePage> {
                 },
                 child: Text("Save"),
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     textStyle: TextStyle(color: Colors.white))),
           ],
         ),
@@ -192,7 +190,7 @@ class CustomElevatedButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(text),
           style: ElevatedButton.styleFrom(
-              primary: Colors.green,
+              backgroundColor: Colors.green,
               textStyle: TextStyle(color: Colors.white))),
     );
   }

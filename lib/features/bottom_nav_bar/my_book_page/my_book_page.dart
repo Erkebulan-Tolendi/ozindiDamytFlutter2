@@ -46,7 +46,7 @@ class MyBookPage extends StatelessWidget {
                 width: 10,
               )
             ],
-            title: const Text('Марафон'),
+            title: const Text('Кітап'),
           ),
         ),
       ),
@@ -126,11 +126,12 @@ class CardKino extends StatelessWidget {
             left: 8.0,
           ),
           child: SizedBox(
-              width: 120,
-              child: Text(
-                user_info[index]["name"],
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-              )),
+            width: 120,
+            child: Text(
+              user_info[index]["name"],
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 100.0),
@@ -143,10 +144,10 @@ class CardKino extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              Text(
-                user_info[index]["type_info"],
-                style: TextStyle(fontSize: 16),
-              ),
+              // Text(
+              //   user_info[index]["type_info"],
+              //   style: TextStyle(fontSize: 16),
+              // ),
             ],
           ),
         ),

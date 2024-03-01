@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "736556682936",
+    "project_id": "ozindidamyt-5a81a",
+    "storage_bucket": "ozindidamyt-5a81a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736556682936:android:e37dba7439fbbbbfbfee4d",
+        "android_client_info": {
+          "package_name": "kz.ozindi.damyt.jihc.ozindi_damyt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsEhG38hewSq4clvTssIHJZ88xAx3BJqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

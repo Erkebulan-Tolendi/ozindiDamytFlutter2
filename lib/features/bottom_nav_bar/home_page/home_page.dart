@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/core/navigation/navigation.dart';
 
@@ -71,7 +73,8 @@ class HomePage extends StatelessWidget {
                     width: 100,
                     height: 100,
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage('URL_OF_USER_PHOTO'),
+                      backgroundImage: NetworkImage(
+                          'https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png'),
                     ),
                   ),
                 ],
@@ -86,15 +89,65 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class ListAction extends StatelessWidget {
+class ListAction extends StatefulWidget {
+  @override
+  _ListActionState createState() => _ListActionState();
+}
+
+class _ListActionState extends State<ListAction>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  bool _isClockwise = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 5),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _toggleRotationDirection() {
+    setState(() {
+      _isClockwise = !_isClockwise;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
       children: [
         SizedBox(
           height: 280,
           child: ListInfo(),
-        )
+        ),
+        GestureDetector(
+          onTap: () {
+            _toggleRotationDirection();
+          },
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.rotate(
+                angle: _isClockwise
+                    ? _controller.value * 2 * pi
+                    : -_controller.value * 2 * pi,
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.blue,
+                ),
+              );
+            },
+          ),
+        ),
       ],
     );
   }

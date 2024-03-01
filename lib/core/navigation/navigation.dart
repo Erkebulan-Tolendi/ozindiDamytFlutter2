@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ozindi_damyt/core/navigation/my_header_drawer.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/cinema/cinema_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/hobby/hobby_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/library/library_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/marathons/marathon.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/new_recommendation/new_recommendation_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/proforintation/proforintation_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/quiz/quiz_page.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/sport/sport.dart';
-import 'package:ozindi_damyt/features/hamburger_drawer/stoury/stoury_page.dart';
-
-import '../../features/hamburger_drawer/podcast/pages/podcast_page.dart';
+import 'package:ozindi_damyt/routing/app_roures.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({super.key});
@@ -43,93 +33,82 @@ class DrawerMenuState extends State<DrawerMenu> {
     return Column(
       children: [
         menuItem(
-          1,
-          "Кітапхана",
-          "library.png",
-          currentPage == DrawerSections.library ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => LibraryPage()),
-        ),
+            1,
+            "Кітапхана",
+            "library.png",
+            currentPage == DrawerSections.library ? true : false,
+            AppRoutes.libraryPage),
         sb2(),
         menuItem(
-          2,
-          "Ғибратты әңгімелер",
-          "stoury.png",
-          currentPage == DrawerSections.stoury ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => StouryPage()),
-        ),
+            2,
+            "Ғибратты әңгімелер",
+            "stoury.png",
+            currentPage == DrawerSections.stoury ? true : false,
+            AppRoutes.stouryPage),
         sb2(),
         menuItem(
-          3,
-          "Подкаст",
-          "podcast.png",
-          currentPage == DrawerSections.podcast ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => PodcastPage()),
-        ),
+            3,
+            "Подкаст",
+            "podcast.png",
+            currentPage == DrawerSections.podcast ? true : false,
+            AppRoutes.podcastPage),
         sb2(),
         menuItem(
-          4,
-          "Quiziz",
-          "quiz.png",
-          currentPage == DrawerSections.quiz ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => QuizPage()),
-        ),
+            4,
+            "Quiziz",
+            "quiz.png",
+            currentPage == DrawerSections.quiz ? true : false,
+            AppRoutes.quizPage),
         sb2(),
         menuItem(
-          5,
-          "Марафон",
-          "marathon.png",
-          currentPage == DrawerSections.marathon ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => MaraphonePage()),
-        ),
+            5,
+            "Марафон",
+            "marathon.png",
+            currentPage == DrawerSections.marathon ? true : false,
+            AppRoutes.maraphonePage),
         sb2(),
         menuItem(
-          6,
-          "Профориентация",
-          "proforintation.png",
-          currentPage == DrawerSections.proforintation ? true : false,
-          MaterialPageRoute(
-              builder: (BuildContext context) => ProforintationPage()),
-        ),
+            6,
+            "Профориентация",
+            "proforintation.png",
+            currentPage == DrawerSections.proforintation ? true : false,
+            AppRoutes.proforintationPage),
         sb2(),
         menuItem(
-          7,
-          "Хобби",
-          "hobby.png",
-          currentPage == DrawerSections.hobby ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => HobbyPage()),
-        ),
+            7,
+            "Хобби",
+            "hobby.png",
+            currentPage == DrawerSections.hobby ? true : false,
+            AppRoutes.hobbyPage),
         sb2(),
         menuItem(
-          8,
-          "Спорт",
-          "sport.png",
-          currentPage == DrawerSections.sport ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => SportPage()),
-        ),
+            8,
+            "Спорт",
+            "sport.png",
+            currentPage == DrawerSections.sport ? true : false,
+            AppRoutes.sportPage),
         sb2(),
         menuItem(
-          9,
-          "Кино",
-          "movies.png",
-          currentPage == DrawerSections.cinema ? true : false,
-          MaterialPageRoute(builder: (BuildContext context) => CinemaPage()),
-        ),
+            9,
+            "Кино",
+            "movies.png",
+            currentPage == DrawerSections.cinema ? true : false,
+            AppRoutes.cinemaPage),
         sb2(),
         menuItem(
           10,
           "Жаңа ұсыныстар",
           "new_recommendation.png",
           currentPage == DrawerSections.new_recommendation ? true : false,
-          MaterialPageRoute(
-              builder: (BuildContext context) => NewRecommendationPage()),
+          AppRoutes.newRecommendationPage,
         ),
         sb2(),
       ],
     );
   }
 
-  Widget menuItem(int id, String title, String icon, bool selected,
-      MaterialPageRoute materialPageRoute) {
+  Widget menuItem(
+      int id, String title, String icon, bool selected, String namePage) {
     return Material(
       color: selected ? Colors.red[200] : Colors.transparent,
       child: InkWell(
@@ -160,7 +139,7 @@ class DrawerMenuState extends State<DrawerMenu> {
             },
           );
           Navigator.of(context).pop();
-          Navigator.push(context, materialPageRoute);
+          Navigator.pushNamed(context, namePage);
         },
         child: Padding(
           padding: EdgeInsets.all(10.0),

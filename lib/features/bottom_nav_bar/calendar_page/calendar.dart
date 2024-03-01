@@ -45,7 +45,7 @@ class _MarathonePageState extends State<MarathonePage> {
                 width: 10,
               )
             ],
-            title: const Text('Марафон'),
+            title: const Text('Календар'),
           ),
         ),
       ),
